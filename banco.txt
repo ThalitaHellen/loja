@@ -1,0 +1,36 @@
+CREATE TABLE Cargo (
+  ID INT NOT NULL AUTO_INCREMENT,
+  Nome VARCHAR(50) NOT NULL,
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO Cargo (Nome) VALUES ('Gerente'), ('Vendedor'), ('Estoquista');
+
+CREATE TABLE Funcionário (
+  ID INT NOT NULL AUTO_INCREMENT,
+  Nome VARCHAR(50) NOT NULL,
+  Sobrenome VARCHAR(50) NOT NULL,
+  Data_nascimento DATE NOT NULL,
+  ID_cargo INT NOT NULL,
+  Departamento VARCHAR(50) NOT NULL,
+  Salário FLOAT NOT NULL,
+  PRIMARY KEY (ID),
+  CONSTRAINT fk_funcionario_cargo
+    FOREIGN KEY (ID_cargo)
+    REFERENCES Cargo(ID)
+);
+
+CREATE TABLE Produto (
+  Código_produto INT NOT NULL AUTO_INCREMENT,
+  Nome VARCHAR(50) NOT NULL,
+  Descrição VARCHAR(255) NOT NULL,
+  Preço FLOAT NOT NULL,
+  Quantidade_estoque INT NOT NULL,
+  ID_funcionário INT NOT NULL,
+  PRIMARY KEY (Código_produto),
+  CONSTRAINT fk_produto_funcionario
+    FOREIGN KEY (ID_funcionário)
+    REFERENCES Funcionário(ID),
+  CONSTRAINT ck_funcionario_estoquista
+    CHECK (ID_funcionário IN (SELECT ID FROM Funcionário WHERE ID_cargo = (SELECT ID FROM Cargo WHERE Nome = 'Estoquista')))
+);
