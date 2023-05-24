@@ -10,12 +10,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import model.User;
 
+
 @WebServlet(name = "Login", urlPatterns = {"/Login"})
 public class Login extends HttpServlet {
     //Atributos
     private String user;
     private String pass;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -25,23 +26,21 @@ public class Login extends HttpServlet {
         
         User objUser = new User(this.user, this.pass);
         
-        if(objUser.isLogged()) {
+        
+        if(objUser.isLogged()){
             HttpSession session = request.getSession();
             session.setAttribute("userLoggedSession", objUser);
             request.setAttribute("userLogged", objUser);
-            request.getRequestDispatcher("home.jsp")
-                    .forward(request, response);
-        } else {
+            request.getRequestDispatcher("home.jsp").forward(request, response);
+        }else{
             PrintWriter out = response.getWriter();
             out.print(
                     "<script>"
                     + "alert('Acesso negado!');"
-                    + "window.location.replace('index.html');"
+                    + "window.location.replace('index.jsp');"
                     + "</script>"
             );
         }
-        
-        
         
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */

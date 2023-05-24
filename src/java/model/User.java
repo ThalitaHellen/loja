@@ -1,3 +1,4 @@
+
 package model;
 
 public class User {
@@ -10,35 +11,34 @@ public class User {
         this.userName = u;
         this.userPass = p;
     }
+     //Getter e Setter
     
-    //Getter e Setter
-    public String getUserName() {
+    public String getUserName(){
         return this.userName;
     }
-    
-    public void setUserName(String u) {
+    public void setUserName(String u){
         this.userName = u;
     }
-
-    public String getUserPass() {
-        return userPass;
+    public String getUserPass(){
+        return this.userPass;
     }
-
-    public void setUserPass(String userPass) {
-        this.userPass = userPass;
+    public void setUserPass(String p){
+        this.userPass = p;
     }
     
-    //toString -> Representação do objeto
+    //toString ->Representação do objeto
+
     @Override
     public String toString() {
-        return "<hr>Nome: " + userName +
-               "<br>Senha: " + userPass;
+        return "<hr>Nome: " + userName + 
+                "<br>Senha " + userPass;
     }
     
     //Métodos gerais
-    public boolean isLogged() {
+    public boolean isLogged(){
         return (userName.equals("email@email")
-                && userPass.equals("1234"));
+                && userPass.equals("1234")
+                );
     }
-      
-}//Fim da classe
+    
+} //fim da classe

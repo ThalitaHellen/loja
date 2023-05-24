@@ -1,56 +1,66 @@
 body{
-    margin: 0;
-    padding: 0;
-    font-family: 'Manrope', sans-serif;
-   
+    font-family: 'Dosis', sans-serif;
+    background-image: url('')
+   }
+#form-login{
+    text-align: center;
+    margin-top: 5%;
+    font-family: Dosis;
 }
 
-header{
+#cadastro{
+  
+  background-position: center center;
+  background-size: cover;
+  height: 100vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  height: 13%;
-  background-color: #f1f1f1;
-  padding: 0 20px;
+  flex-direction: column; 
+
+}
+div{
+  width: 60%;
+  height:80%;
+  background-image: url('../img/pergaminho.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-top: 5%;
+  
+    
+}
+#form_funcionario {
+ 
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-family: Dosis;
   
 }
 
-
-
-nav {
-display: flex;
-justify-content: space-between;
-width: 20%;
-margin-right: 5%;   
-}
-nav a{
-    text-decoration: none;
-    color: black;
+input[type="submit"]{
+    width: 180px;
+    padding: 5px 0px 5px 0px;
+    font-size:16pt;  
     font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+    background-color: cadetblue;   
 }
-.intro{
-    text-align: center;
+.fields{
+    width: 200px; 
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 16pt;
+    font-weight: bold;
+    box-shadow: 3px 3px 3px black;
     
 }
-.galeria{
-  margin-left: 10%;
-  width: 80%;
-  height: 70%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-    
+label{
+  font-size: 18px;
+  color: black;
+  text-transform: capitalize;
+  font-weight: bold;
 }
-
-.galeria img{
-    flex-basis: 15%; /* definir o tamanho base de cada imagem */
-    max-width: 10%;
-}
-footer{
-   
-    height: 10%;
-    text-align: center;
-}
-
-
