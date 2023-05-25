@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.text.SimpleDateFormat;
 
 public class FuncionarioDAO {
     private static Connection conn;
@@ -18,7 +17,7 @@ public class FuncionarioDAO {
     //INSERT (Create)
     public void insertFuncionario(Funcionario f) throws SQLException {
         // Criando a query para inserir o registro
-        String query = "INSERT INTO funcionario(id, nome, cargo_id, salario, data_nascimento)"
+        String query = "INSERT INTO funcionario(id, nome, cargo, salario, data_nascimento)"
                 + "VALUES(?,?,?,?,?)";
 
         // Preparar a query para ser executada no BD
@@ -26,12 +25,13 @@ public class FuncionarioDAO {
 
         prep.setInt(1, f.getId());
         prep.setString(2, f.getNome());
-        prep.setInt(3, f.getCargo_Id());
-        prep.setBigDecimal(4, f.getSalario());
+        prep.setString(3, f.getCargo());
+        prep.setDouble(4, f.getSalario());
+        prep.setString(5, f.getData_nascimento());
 
         // Converter a data de nascimento em uma string
-        String dataNascimentoStr = new SimpleDateFormat("yyyy-MM-dd").format(f.getDataNascimento());
-        prep.setString(5, dataNascimentoStr);
+        //String dataNascimentoStr = new SimpleDateFormat("yyyy-MM-dd").format(f.getData_nascimento());
+        //prep.setString(5, dataNascimentoStr);
 
         // Executando a query pronta
         prep.execute();
@@ -62,18 +62,20 @@ public class FuncionarioDAO {
             // os dados vindos das colunas do BD
             func.setId(res.getInt("id"));
             func.setNome(res.getString("nome"));
-            func.setCargo_Id(res.getInt("cargo_id"));
-            func.setSalario(res.getBigDecimal("salario"));
+            func.setCargo(res.getString("cargo"));
+            func.setSalario(res.getDouble("salario"));
+            func.setData_nascimento(res.getString("data_nascimento"));
 
             // Converter a string da data de nascimento para java.util.Date
-            String dataNascimentoStr = res.getString("data_nascimento");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                java.util.Date dataNascimento = dateFormat.parse(dataNascimentoStr);
-                func.setDataNascimento(dataNascimento);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+//            String dataNascimentoStr = res.getString("data_nascimento");
+//            
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            try {
+//                java.util.Date dataNascimento = dateFormat.parse(dataNascimentoStr);
+//                func.setData_nascimento(dataNascimento);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
 
             // Inserir o objeto completo na lista
             list.add(func);
@@ -96,18 +98,19 @@ public class FuncionarioDAO {
         if (res.next()) {
             func.setId(res.getInt("id"));
             func.setNome(res.getString("nome"));
-            func.setCargo_Id(res.getInt("cargo_id"));
-            func.setSalario(res.getBigDecimal("salario"));
-
-            // Converter a string da data de nascimento para java.util.Date
-            String dataNascimentoStr = res.getString("data_nascimento");
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            try {
-                java.util.Date dataNascimento = dateFormat.parse(dataNascimentoStr);
-                func.setDataNascimento(dataNascimento);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            func.setCargo(res.getString("cargo"));
+            func.setSalario(res.getDouble("salario"));
+            func.setData_nascimento(res.getString("data_nascimento"));
+            
+// Converter a string da data de nascimento para java.util.Date
+//            String dataNascimentoStr = res.getString("data_nascimento");
+//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+//            try {
+//                java.util.Date dataNascimento = dateFormat.parse(dataNascimentoStr);
+//                func.setDataNascimento(dataNascimento);
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
         }
 
         return func;
@@ -116,16 +119,17 @@ public class FuncionarioDAO {
     //UPDATE
     public void updateFuncionario(Funcionario func) throws SQLException {
         String query = "UPDATE funcionario SET nome = ?,"
-                + "cargo_id = ?, salario = ?, data_nascimento = ?";
+                + "cargo = ?, salario = ?, data_nascimento = ? WHERE id = ?";
 
         PreparedStatement prep = conn.prepareStatement(query);
         prep.setString(1, func.getNome());
-        prep.setInt(2, func.getCargo_Id());
-        prep.setBigDecimal(3, func.getSalario());
+        prep.setString(2, func.getCargo());
+        prep.setDouble(3, func.getSalario());
+        prep.setString(4, func.getData_nascimento());
+        prep.setInt(5, func.getId());
 
         // Converter a data de nascimento em uma string
-        String dataNascimentoStr = new SimpleDateFormat("yyyy-MM-dd").format(func.getDataNascimento());
-        prep.setString(4, dataNascimentoStr);
+        //String dataNascimentoStr = new SimpleDateFormat("yyyy-MM-dd").format(func.getDataNascimento());
 
         prep.execute();
         prep.close();

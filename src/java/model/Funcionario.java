@@ -1,23 +1,26 @@
 package model;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 public class Funcionario {
     private int id;
     private String nome;
-    private int cargo_Id;
-    private BigDecimal salario;
-    private String data_nascimento;
+    private String cargo;
+    private double salario;
+    private String dataNascimento;
 
     // Construtor, getters e setters
-
-    public Funcionario(String nome, int id, BigDecimal salario, String data_nascimento) {
+    public Funcionario(String nome, String cargo, double salario, String dataNascimento) {
+        this.nome = nome;
+        this.cargo = cargo;
+        this.salario = salario;
+        this.dataNascimento = dataNascimento;
+    }
+    
+    public Funcionario( int id, String nome, double salario, String cargo, String dataNascimento) {
         this.id = id;
         this.nome = nome;
-        this.cargo_Id = cargo_Id;
+        this.cargo = cargo;
         this.salario = salario;
-        this.data_nascimento = data_nascimento;
+        this.dataNascimento = dataNascimento;
     }
     
     public Funcionario(){}
@@ -38,36 +41,28 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public int getCargo_Id() {
-        return cargo_Id;
+    public String getCargo() {
+        return cargo;
     }
 
-    public void setCargo_Id(int cargo_Id) {
-        this.cargo_Id = cargo_Id;
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
-    public  BigDecimal getSalario() {
+    public  double getSalario() {
         return salario;
     }
 
-    public void setSalario(BigDecimal salario) {
+    public void setSalario(double salario) {
         this.salario = salario;
     }
     
     public String getData_nascimento(){
-     return data_nascimento;
+     return dataNascimento;
     }
     
-    public void setData_nascimento(String data_nascimento){
-        this.data_nascimento = data_nascimento;
-    }
-
-    Object getDataNascimento() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    void setDataNascimento(Date dataNascimento) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setData_nascimento(String dataNascimento){
+        this.dataNascimento = dataNascimento;
     }
     
 }

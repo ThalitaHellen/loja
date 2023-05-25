@@ -24,18 +24,19 @@
                     <br><br>
                     <label for="Data_nascimento">Data de nascimento: </label>
                     <br>
-                    <input type="date" name="Data_nascimento">
+                    <input type="date" name="data_nascimento">
                     <br><br>
                     <label for="salario">Salário:</label>
                     <br>
-                    <input type="text" class= "fields" name="Salário" placeholder="Salário" value="">
+                    <input type="text" class= "fields" name="salario" placeholder="Salário" value="">
                     <br><br>
                     
-                    <select name="ID_cargo" class= "fields" required >
+                    <select name="cargo" class= "fields" required >
                         <option value="" >Cargo</option>
                         <option value="Gerente" >Gerente</option>
                         <option value="Vendedor" >Vendedor</option>
                         <option value="Estoquista" >Estoquista</option>
+                        <option value="Estagiario" >Estágiario</option>
                     </select>
                     <br><br>
                       <input type="submit" value="Cadastrar" name="name"><br>                

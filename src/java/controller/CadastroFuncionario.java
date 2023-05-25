@@ -2,12 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import java.math.BigDecimal;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import model.Funcionario;
 import model.FuncionarioDAO;
@@ -17,8 +16,8 @@ import model.FuncionarioDAO;
 public class CadastroFuncionario extends HttpServlet {
    private int id;
     private String nome;
-    private int cargo_Id;
-    private BigDecimal salario;
+    private String cargo;
+    private double salario;
     private String data_nascimento;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -27,19 +26,18 @@ public class CadastroFuncionario extends HttpServlet {
         
         //Verificar se há um ID
        String  idParam = request.getParameter("id");
-       this.id=(idParam != null && !idParam.isEmpty()) ? Integer.valueOf(idParam) : 0;
+       //this.id = (idParam != null && !idParam.isEmpty()) ? Integer.valueOf(idParam) : 0;
         
         //Recebendo valores do formulário de cadastro
-        this.nome = request.getParameter("nome");
-        String cargoIdParam = request.getParameter("cargo_Id");
-        this.cargo_Id = (cargoIdParam != null && !cargoIdParam.isEmpty()) ? Integer.valueOf(cargoIdParam) : 0;
-        this.salario = new BigDecimal(request.getParameter("salario"));
+        this.nome = request.getParameter("funcionario");
+        this.cargo = request.getParameter("cargo");
+        this.salario = Double.parseDouble(request.getParameter("salario"));
         this.data_nascimento = request.getParameter("data_nascimento");
         
         //Criando objeto da classe Artista para salvar no BD
         Funcionario funcionario = new Funcionario(
                this.nome,
-                this.cargo_Id,
+                this.cargo,
                 this.salario,
                 this.data_nascimento
         );

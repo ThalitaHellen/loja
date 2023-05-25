@@ -37,7 +37,7 @@
                 <tr>
                     <td><%= func.getId() %></td>
                     <td><%= func.getNome() %></td>
-                    <td><%= func.getCargo_Id() %></td>
+                    <td><%= func.getCargo() %></td>
                     <td><%= func.getSalario() %></td>
                     <td><%= func.getData_nascimento() %></td>
                     <td>
