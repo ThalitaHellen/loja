@@ -12,12 +12,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Editar</title>
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <style>
+            body {
+                font-family: 'Dosis', sans-serif;
+            }
+        </style>
     </head>
     <body>
         <h1>Lista</h1>
         <hr>
         
-        <table border="1">
+        <table class="employee-table">
             <thead>
                 <tr>
                     <th>COD</th>
@@ -41,29 +47,30 @@
                     <td><%= func.getSalario() %></td>
                     <td><%= func.getData_nascimento() %></td>
                     <td>
-                        <a href="FuncionarioUpdate?id=">EDITAR</a>
+                        <a href="FuncionarioUpdate?id=<%= func.getId() %>">EDITAR</a>
                     </td>
                     <td>
-                        <a onclick="confirmDelete()">EXCLUIR</a>
+                        <a onclick="confirmDelete(<%= func.getId() %>)">EXCLUIR</a>
                     </td>
                 </tr>
                 <% } %>
             </tbody>
         </table>
+            <br>
 
         
-        <hr>
-        <a href="home.jsp" >Pagina inicial</a>
+        
+       <a href="home.jsp" style="display: block; text-align: center; color: #800000;">Página inicial</a>
+
         
         <script>
-            function confirmDelete() {
+            function confirmDelete(id) {
                 if(confirm("Deseja realmente excluir?")) {
-                    window.location.replace("ArtistaDelete?cod=");
+                    window.location.replace("FuncionarioDelete?cod=" + id);
                 } else {
                     alert("Exclusão cancelada!");
                 }
             }
         </script>
-        
     </body>
 </html>

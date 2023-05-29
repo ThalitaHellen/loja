@@ -2,11 +2,11 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 import model.Funcionario;
 import model.FuncionarioDAO;
@@ -26,7 +26,12 @@ public class CadastroFuncionario extends HttpServlet {
         
         //Verificar se há um ID
        String  idParam = request.getParameter("id");
-       //this.id = (idParam != null && !idParam.isEmpty()) ? Integer.valueOf(idParam) : 0;
+           if (idParam != null) {
+           this.id = Integer.parseInt(idParam);
+}
+       
+       
+         //this.id = Integer.parseInt(request.getParameter("id"));
         
         //Recebendo valores do formulário de cadastro
         this.nome = request.getParameter("funcionario");
@@ -49,13 +54,13 @@ public class CadastroFuncionario extends HttpServlet {
             
             //Se tivermos um ID, atualizaremos o registro
             //senão salvaremos como um novo registro
-           if (idParam != null && !idParam.isEmpty()) {
+          if(request.getParameter("id")!=null){
                 funcionario.setId(this.id);
                 fundao.updateFuncionario(funcionario);
             } else {
                 fundao.insertFuncionario(funcionario);
             }
-            response.sendRedirect("lista.jsp");
+                response.sendRedirect("lista.jsp");
 
         } catch (ClassNotFoundException | SQLException erro) {   
         

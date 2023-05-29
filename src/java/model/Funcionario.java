@@ -64,5 +64,9 @@ public class Funcionario {
     public void setData_nascimento(String dataNascimento){
         this.dataNascimento = dataNascimento;
     }
+
+    public Funcionario listById(int id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }

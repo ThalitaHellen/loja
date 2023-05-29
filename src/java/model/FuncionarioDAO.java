@@ -66,16 +66,7 @@ public class FuncionarioDAO {
             func.setSalario(res.getDouble("salario"));
             func.setData_nascimento(res.getString("data_nascimento"));
 
-            // Converter a string da data de nascimento para java.util.Date
-//            String dataNascimentoStr = res.getString("data_nascimento");
-//            
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//            try {
-//                java.util.Date dataNascimento = dateFormat.parse(dataNascimentoStr);
-//                func.setData_nascimento(dataNascimento);
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
+           
 
             // Inserir o objeto completo na lista
             list.add(func);
@@ -128,9 +119,15 @@ public class FuncionarioDAO {
         prep.setString(4, func.getData_nascimento());
         prep.setInt(5, func.getId());
 
-        // Converter a data de nascimento em uma string
-        //String dataNascimentoStr = new SimpleDateFormat("yyyy-MM-dd").format(func.getDataNascimento());
+        prep.execute();
+        prep.close();
+    }
 
+    public void deleteFuncionario(int id) throws SQLException {
+        String query = "DELETE FROM funcionario "
+                + "WHERE id = " + id;
+        
+        PreparedStatement prep = conn.prepareStatement(query);
         prep.execute();
         prep.close();
     }
